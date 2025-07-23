@@ -14,10 +14,9 @@ cur.execute(''' create table if not exists Customer(
 
 cur.execute('''
 
-            create table if not exists Order(
+            create table if not exists Orders(
             o_id integer primary key autoincrement,
-            c_id integer not null,
-            foreign key (c_id) references Customer (u_id),
+            c_id integer not null references Customer (u_id),
             amt integer not null,
             date text not null )
             ''')
@@ -33,7 +32,7 @@ create table if not exists Product(
 cur.execute('''
 create table if not exists Payment(
             pay_id integer primary key autoincrement,
-            type text noy null,
+            type text not null,
             amt integer not null)
             ''')
 
@@ -48,7 +47,7 @@ create table if not exists Category(
 cur.execute('''
 create table if not exists Cart(
             cart_id integer primary key autoincrement,
-            u_id integer foreign key (u_id) references Customer (c_id))
+            u_id integer references Customer (c_id))
             ''')
 conn.commit()
 conn.close()

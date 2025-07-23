@@ -41,9 +41,9 @@
 
 
 
-import sqlite3
-conn = sqlite3.connect('mydata.db')
-cur = conn.cursor() 
+# import sqlite3
+# conn = sqlite3.connect('mydata.db')
+# cur = conn.cursor() 
 # cur.execute('''
 #     create table if not exists users(
 #         id integer primary key autoincrement,
@@ -94,23 +94,48 @@ cur = conn.cursor()
 # cur.execute('insert into users (name, age) values(?,?)',('Sundar S', 21))
 # cur.execute('insert into users (name,age) values (?,?)', ('Hema', 21))
 
-select = 'select * from users'
-insert = 'insert into users (name, age) values(?,?)'
-delete = 'delete from users where id=?'
-update = 'update users set age=? where id=?'
+# select = 'select * from users'
+# insert = 'insert into users (name, age) values(?,?)'
+# delete = 'delete from users where id=?'
+# update = 'update users set age=? where id=?'
 
 
-n = int(input('Enter the number of users you want to insert : '))
-for i in range(n):
-    name = input('Enter the name : ')
-    age = int(input('Enter the age: '))
-    val = (name,age)
-    cur.execute(insert,val)
-print(cur.rowcount, 'rows affected')
-cur.execute(select)
-rows = cur.fetchall()
+# n = int(input('Enter the number of users you want to insert : '))
+# for i in range(n):
+#     name = input('Enter the name : ')
+#     age = int(input('Enter the age: '))
+#     val = (name,age)
+#     cur.execute(insert,val)
+# print(cur.rowcount, 'rows affected')
+# cur.execute(select)
+# rows = cur.fetchall()
 
-for data in rows:
-    print(data)
-conn.commit()
-conn.close()
+# for data in rows:
+#     print(data)
+# conn.commit()
+# conn.close()
+
+
+
+
+# text = input("Enter text: ")
+# def vowel(text):
+#     for char in text:
+#         if char in 'aeiouAEIOU':
+#             print(char) 
+        
+# vowel(text)
+# vowels = 'aeiouAEIOU'
+# chars = {char:text.count(char) for char in text if char in vowels }
+# print(chars)
+
+
+from datetime import datetime
+def age():
+    dob = input("Enter dob : ")
+    yr = dob.split("/")
+    cur_yr = datetime.now().year
+    age = cur_yr - int(yr[-1])
+    return age
+
+print(f"Your age is {age()}")
