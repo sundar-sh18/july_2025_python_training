@@ -130,12 +130,12 @@
 # print(chars)
 
 
-from datetime import datetime
-def age():
-    dob = input("Enter dob : ")
-    yr = dob.split("/")
-    cur_yr = datetime.now().year
-    age = cur_yr - int(yr[-1])
-    return age
+# from datetime import datetime
+# def age():
+#     dob = input("Enter dob : ")
+#     yr = dob.split("/")
+#     cur_yr = datetime.now().year
+#     age = cur_yr - int(yr[-1])
+#     return age
 
-print(f"Your age is {age()}")
+# print(f"Your age is {age()}")
