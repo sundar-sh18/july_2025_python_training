@@ -56,21 +56,41 @@
 
 #DATA ENCAPSULATION
 
-class Person:
+# class Person:
 
-    def setName(self, name):
-        self.name = name
+#     def setName(self, name):
+#         self.name = name
 
-    def __init__(self, name):
-        self.name = name
+#     def __init__(self, name):
+#         self.name = name
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
-    def getName(self):
-        return self.name
+#     def getName(self):
+#         return self.name
 
-person = Person("Sundar")
-person.setName("Mayur")
-print(person.getName())
-print(person)
+# person = Person()
+# person.setName("sundar")
+# print(person.getName())
+# print(person)
+
+
+#ABSTRACT METHOD
+
+# from abc import ABC, abstractmethod
+
+# class Shape:
+#     @abstractmethod
+#     def area(self):
+#         pass
+
+# class Circle(Shape):
+#     def __init__(self, radius):
+#         self.radius = radius
+    
+#     def area(self):
+#         return 3.14*self.radius*self.radius
+    
+# circle = Circle(5)
+# print(f"area of circle: {circle.area()}")
