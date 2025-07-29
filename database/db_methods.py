@@ -1,13 +1,7 @@
-import mysql.connector
+from config import connect_to_database
 
-conn = mysql.connector.connect(
-    host='103.25.175.234',
-    user='root',
-    password='password'
-    )
-
+conn = connect_to_database()
 cur = conn.cursor()
-
 
 def createTable():
     cur.execute('use sundar')
@@ -21,28 +15,46 @@ def createTable():
     cur.execute(create)
     print('created table user')
 
-def insertData(id,name,email):
-    
-    insert = 'insert into user values(?,?,?)'
-    val = (id,name,email)
+def insertData(id,name,email,mobile):
+    cur = conn.cursor()
+    print('using sundar db for inserting data')
+    insert = 'insert into user values(%s,%s,%s,%s)'
+    val = (id,name,email,mobile)
     cur.execute(insert,val)
+    print('inserted data into user table')
     conn.commit()
     conn.close()
     
 
-def deleteData():
-    delete = 'delete from '
+def deleteData(id):
+    delete = 'delete from user where id = %s'
+    val= (id,)
+    print('deleted data of id:', id)
+    cur.execute(delete, val)
+    conn.commit()
+    conn.close()
 
 
 def update():
     return ''
 
 
-def selectTable(table):
-   select = 'select * from ?'
-   cur.execute(select, table,)
+def selectTable():
+   select = 'select * from user'
+   cur.execute(select)
+   for data in cur.fetchall():
+       print(data)
    conn.commit()
    conn.close()
 
+
+def describe():
+    desc = 'desc user'
+    cur.execute(desc)
+    result = cur.fetchall()
+    print(result)
+    conn.commit()
+    conn.close()
+    
 
 

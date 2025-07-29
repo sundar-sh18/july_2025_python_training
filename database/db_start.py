@@ -1,6 +1,8 @@
 
-from db_methods import insertData,createTable,selectTable
+from db_methods import insertData,createTable,selectTable,describe,deleteData
 
-# insertData(106, 'Vishnu', 'vish@gmail.com')
-createTable('user')
-# selectTable('user')
+# insertData(102, 'Sundar', 'sundar@gmail.com','1294584457')
+selectTable()
+# createTable()
+# describe()
+# deleteData(101)
