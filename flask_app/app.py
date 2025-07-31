@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -17,6 +17,9 @@ def myHtml():
 @app.route('/about/<name>')
 def about(name):
     return jsonify({'name': name, 'email': 'sundar@gmail.com'})
+
+
+@app.route('/mydetails', methods = ['get','post'])
 
 @app.route('/getdata')
 def getData():
