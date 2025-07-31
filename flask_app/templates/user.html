@@ -8,10 +8,21 @@
 <body>
     <table>
         <thead>
-            <tr>ID</tr>
-            <tr>Name</tr>
-            <tr>Email</tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
         </thead>
+        <tbody>
+            {%for user in userlist%}
+            <tr>
+                <td><a href="userInfo?id={{user[0]}}">{{user[0]}}</a></td>
+                <td>{{user[1]}}</td>
+                <td>{{user[2]}}</td>
+                <td>{{user[3]}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
     </table>
 </body>
 </html>
