@@ -1,1 +1,3 @@
 database/
+flask_app/config.py
+flask_app/de_methods.py
