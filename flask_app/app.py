@@ -4,22 +4,44 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST']= '103.25.175.234'
+app.config['MYSQL_HOST']= 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'sundar'
+app.config['MYSQL_PASSWORD'] = 'roottoor'
+app.config['MYSQL_DB'] = 'sundar_cse'
 
 mysql = MySQL(app)
-@app.route('/')
-def myHtml():
-    return render_template('input.html')
+@app.route('/', methods = ['GET','POST'])
+def get():
+    if request.method == 'GET':
+        return render_template('input.html')
+    else:
+        name = request.form.get('name')
+        email = request.form.get('email')
 
-@app.route('/about/<name>')
-def about(name):
-    return jsonify({'name': name, 'email': 'sundar@gmail.com'})
+        cur = mysql.connection.cursor()
+        sql = "insert into user values (106,%s,%s,'saapsas')"
+        val = (name,email)
+        cur.execute(sql,val)
+        mysql.connection.commit()
+        cur.close()
+        return 'inserted'
 
 
-@app.route('/mydetails', methods = ['get','post'])
+@app.route('/userInfo')
+def userInfo():
+    id = request.args.get('id')
+    sql =''
+    if id is None:
+        sql = 'select * from user'
+    else:
+        sql = f'select * from user where id = {id}'
+    
+    cur = mysql.connection.cursor()
+    cur.execute(sql)
+    res = cur.fetchall()
+    cur.close()
+    return render_template('user.html', userlist = res)
+
 
 @app.route('/getdata')
 def getData():
