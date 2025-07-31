@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -10,11 +10,9 @@ app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'sundar'
 
 mysql = MySQL(app)
-
 @app.route('/')
-def greet():
-    return(
-'hello world')
+def myHtml():
+    return render_template('input.html')
 
 @app.route('/about/<name>')
 def about(name):
@@ -30,3 +28,6 @@ def getData():
 
 if __name__ == '__main__':
     app.run()
+
+
+
