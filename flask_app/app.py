@@ -51,6 +51,21 @@ def getData():
     cur.close()
     return jsonify(res)
 
+@app.route('/sample', methods=['post'])
+def sample():
+
+    # title = request.form.get('title')
+    # content = request.form.get('content')
+    json = request.get_json()
+    title = json.get('title')
+    content = json.get('content')
+    cur = mysql.connection.cursor()
+    cur.execute('insert into blog (title,content) values (%s,%s)', (title,content))
+    mysql.connection.commit()
+    cur.close()
+    return 'updated'
+
+
 if __name__ == '__main__':
     app.run()
 
