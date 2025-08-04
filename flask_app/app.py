@@ -43,10 +43,10 @@ def userInfo():
     return render_template('user.html', userlist = res)
 
 
-@app.route('/getdata')
+@app.route('/getdata', methods=['get'])
 def getData():
     cur = mysql.connection.cursor()
-    cur.execute('select * from user')
+    cur.execute('select * from blog')
     res = cur.fetchall()
     cur.close()
     return jsonify(res)
