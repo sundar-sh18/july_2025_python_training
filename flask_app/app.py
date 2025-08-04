@@ -65,6 +65,34 @@ def sample():
     cur.close()
     return 'updated'
 
+@app.route('/update', methods=['post'])
+def update():
+
+    # title = request.form.get('title')
+    # content = request.form.get('content')
+    json = request.get_json()
+    id = json.get('id')
+    title = json.get('title')
+    content = json.get('content') 
+    cur = mysql.connection.cursor()
+    cur.execute('update blog set title = %s , content = %s where id = %s',(title,content,id))
+    mysql.connection.commit()
+    cur.close()
+    return 'updated with api'
+
+
+@app.route('/delete', methods=['post'])
+def delete():
+    json = request.get_json()
+    id = json.get('id')
+    cur = mysql.connection.cursor()
+    cur.execute('delete from blog where id = %s',(id,))
+    mysql.connection.commit()
+    cur.close()
+    return 'deleted with api'
+
+
+
 
 if __name__ == '__main__':
     app.run()
